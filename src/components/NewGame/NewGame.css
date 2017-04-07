@@ -1,0 +1,10 @@
+.NewGame {
+  flex: 1 0 auto;
+  display: flex;
+  border: solid 1px black;
+}
+
+.NewGame > button {
+  unset: all;
+  flex: 1 1 auto;
+}
