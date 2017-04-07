@@ -9,12 +9,20 @@ const Box = ({
   revealed = false,
   flag = false,
   value = 0,
-  classNames = [],
 }) => {
-  return(
-    <div className={`box ${cx(classNames)}`}>
-      render testing
-    </div>
+  const classNames = cx([
+    'Box',
+    !(revealed || flag) && 'unchecked',
+    flag && 'flagged',
+    revealed && 'revealed',
+    revealed && `count-${value}`,
+  ]);
+  return (
+    <button
+      onClick={flag ? rightClick : leftClick}
+      onContextMenu={rightClick}
+      className={classNames}
+    />
   )
 }
 

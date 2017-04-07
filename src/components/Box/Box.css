@@ -1,0 +1,92 @@
+.Box {
+  flex: 1 0 auto;
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+}
+.Box:active, .Box:focus {
+  outline-style: none;
+}
+
+.Box.unchecked {
+  border: outset 0.15rem;
+  outline: 0;
+  background-color: rgb(192, 192, 192);
+  cursor: pointer;
+
+}
+.Box.unchecked:hover {
+  background-color: #b2b2b2;
+}
+.Box.unchecked:active {
+  border: inset 0.15rem;
+}
+
+/*
+ * NOTE: Must be used in conjunction with a container that has display set to flex
+ **/
+.Box.flagged {
+  border: outset 0.15rem;
+  outline: 0;
+  background-color: rgb(192, 192, 192);
+  /*vertical-align: middle;*/
+  cursor:alias;
+}
+.Box.flagged:hover {
+  background-color: rgb(192, 192, 192);
+}
+.Box.flagged:active {
+  border: outset 0.15rem;
+}
+.Box.flagged::before {
+  content: "🚩";
+}
+
+
+.Box.revealed {
+  border: solid 0.15rem rgb(192, 192, 192);
+  outline: 0;
+  background-color: rgb(192, 192, 192);
+}
+.Box.revealed:hover {
+
+}
+
+.Box.revealed.count--1 {
+  border: solid 0.15rem rgb(192, 192, 192);
+  background-color: rgb(192, 192, 192);
+}
+.Box.revealed.count--1::before {
+  content: "🍷";
+}
+.Box.revealed.count-0::before {
+  content: "";
+}
+.Box.revealed.count-1::before {
+  content: "1";
+}
+.Box.revealed.count-2::before {
+  content: "2";
+}
+.Box.revealed.count-3::before {
+  content: "3";
+}
+.Box.revealed.count-4::before {
+  content: "4";
+}
+.Box.revealed.count-5::before {
+  content: "5";
+}
+.Box.revealed.count-6::before {
+  content: "6";
+}
+.Box.revealed.count-7::before {
+  content: "7";
+}
+.Box.revealed.count-8::before {
+  content: "8";
+}
+
+
+
+
