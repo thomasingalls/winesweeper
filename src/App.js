@@ -22,6 +22,7 @@ class App extends Component {
       board: [],
       running: false,
       cheat: false,
+      win: null,
     };
 
     this.createNewGame = this.createNewGame.bind(this);
@@ -32,6 +33,7 @@ class App extends Component {
     this.reset = this.reset.bind(this);
     this.reveal = this.reveal.bind(this);
     this.pause = this.pause.bind(this);
+    this.validate = this.validate.bind(this);
   }
 
   createNewGame() {
@@ -52,11 +54,19 @@ class App extends Component {
     });
   }
 
+  validate() {
+    this.setState({
+      win: this.state.remaining === 0,
+    });
+    this.endGame();
+  }
+
   leftClick(e) {
     const { state: { board, remaining, cols } } = this;
     const { id, value } = e.target;
 
     if (String(value) === "-1") {
+      this.validate();
       return this.endGame(this);
     }
 
@@ -121,6 +131,7 @@ class App extends Component {
       bombs,
       size,
       remaining: cols * rows - bombs,
+      win: null,
     });
   }
 
@@ -141,13 +152,14 @@ class App extends Component {
   render() {
     const {
       state: {
-        rows, cols, size, board, running, cheat, remaining,
+        rows, cols, size, board, running, cheat, remaining, win,
       },
       renderBoard,
       reset,
       reveal,
       pause,
       endGame,
+      validate,
     } = this;
 
     const len = board.length === 0;
@@ -157,6 +169,11 @@ class App extends Component {
         <div className="App-header">
           <div>
             <Timer running={running} reset={len} />
+          </div>
+          <div>
+            <button className="ui button" onClick={validate} disabled={win !== null}>
+              { win !== null ? win ? 'Hooray!' : 'Oh no!' : ':-)' }
+            </button>
           </div>
           <div>
             <button className="ui small button" onClick={reset}>reset</button>
